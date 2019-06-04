@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Netflix</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'users_app/css/style.css' %}">
+</head>
+
+<body>
+    <div class="wrapper">
+        <div>
+            <div style="position: relative; left: 80%;">
+                <a href="/dashboard">Back </a> <a href="/logout">Logout</a></div>
+            <h1>{{job.job}}</h1>
+            <div class="info">
+                <h2>{{job.description}}</h2>
+                <h2>Location: {{job.location}}</h2>
+                <h2>Posted by: {{job.user_posted}}</h2>
+                <h2>Posted on: {{job.created_at}}</h2>
+            </div>
+            <p> <a href="/addList/{{j.id}}">Add To My Jobs</a> </p>
+        </div>
+    </div>
+</body>
+
+</html>

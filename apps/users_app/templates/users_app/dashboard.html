@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'users_app/css/style.css' %}">
+    <script src="main.js"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <h1>Welcome {{logged_user.first_name}}! <a href="/logout">Logout</a> <a style="position: relative; left:70%;"
+                href="/addJob">Add A Job</a> </h1> <br>
+        <div class="job_board">
+            <table style="width: 45%; margin-left: 20px;">
+                <tr>
+                    <th>Job</th>
+                    <th>Location</th>
+                    <th>Action</th>
+                </tr>
+                {% for j in jobs %}
+                {% if j not in list %}
+                <tr>
+                    <td>{{j.job}}</td>
+                    <td>{{j.location}}</td>
+                    <td><a href="/view/{{j.id}}">View</a> <a href="addList/{{j.id}}">Add</a>
+                        {% if j.user_posted == full %}
+                        <a href="/edit/{{j.id}}">Edit</a> <a href="/delete/{{j.id}}">Cancel</a>
+                        {% endif%}</td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </table>
+            <table style="width: 45%; margin-left: 20px;">
+                <tr>
+                    <th colspan="3">My Jobs</th>
+                </tr>
+                {% for l in list %}
+                <tr>
+                    <td>{{l.job}}</td>
+                    <td> <a href="/view/{{l.id}}">View</a></td>
+                    <td> <a href="/delete/{{l.id}}">Done</a> </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

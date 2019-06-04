@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'app_name/css/style.css' %}">
+    <script src="main.js"></script>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Welcome to Handy Helper</h1>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+    </ul>
+    {% endif %}
+    <h4>Register</h4>
+    <form action="/register" method="POST">
+        {% csrf_token %}
+        <p>First Name: <input type="text" name="first_name"></p>
+        <p>Last Name: <input type="text" name="last_name"></p>
+        <p>Email: <input type="email" name="email"></p>
+        <p>Password: <input type="password" name="password"></p>
+        <p>Password Confirmation: <input type="password" name="password_confirmation"></p>
+        <button>Register</button>
+    </form>
+    <h4>Login</h4>
+    <form action="/login" method="POST">
+        {% csrf_token %}
+        <p>Email: <input type="email" name="email"></p>
+        <p>Password: <input type="password" name="password"></p>
+        <button>Login</button>
+    </form>
+</body>
+
+</html>

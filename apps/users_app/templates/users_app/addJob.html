@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Books/Authors</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'users_app/css/style.css' %}">
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="form">
+            <h1>Add a Job!</h1>
+            <form action="/add_job" method="POST">
+                {% csrf_token %}
+                Title:
+                <input style="margin-left: 50px;" type="text" name="job" value=""><br><br>
+                Description:
+                <textarea style="margin-left: 5px;" rows="4" cols="30" name="description">
+                </textarea>
+                <br>
+                Location:
+                <textarea style="margin-left: 5px;" rows="4" cols="30" name="location">
+                </textarea>
+                <br>
+                <br>
+                <input type="hidden" name="user_posted" value="{{user.first_name}} {{user.last_name}}">
+                <input style="margin-left: 90px;" type="submit" value="Submit" method="POST">
+            </form>
+            <ul>
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>
